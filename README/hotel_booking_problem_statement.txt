@@ -1,0 +1,5 @@
+Problem Statement: 
+The hotel industry faces challenges in ensuring transparency, security, and trust for both hoteliers and customers in the booking process. Traditional systems are prone to manipulation, data breaches, and lack of accountability, leading to disputes and inefficiencies.
+
+Blockchain Solution:
+By leveraging blockchain technology, my hotel booking application revolutionizes the industry. The immutable nature of the blockchain ensures transparent and tamper-proof records of bookings, preventing fraud and enhancing trust. Smart contracts enable automatic execution of agreements, eliminating intermediaries and reducing costs. Decentralization enhances data security, privacy, and user control, empowering both hoteliers and customers with a seamless, efficient, and trustworthy booking experience.

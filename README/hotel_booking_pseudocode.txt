@@ -1,0 +1,127 @@
+Contract HotelBooking:
+
+    // Address of the contract owner
+    address public owner;
+
+    // Struct to represent a reservation made by a guest
+    struct Reservation:
+        address guest; // Address of the guest who made the reservation
+        uint256 roomId; // ID of the room reserved
+        uint256 startDate; // Start date of the reservation
+        uint256 endDate; // End date of the reservation
+        bool isPaid; // Flag to indicate if the reservation is paid
+
+    // Struct to represent a room available for booking
+    struct Room:
+        bool isAvailable; // Flag to indicate if the room is available
+        uint256 price; // Price per night for the room
+
+    // Mapping to store room availability and price
+    mapping(uint256 => Room) public rooms;
+
+    // Array to store all reservations made
+    Reservation[] public reservations;
+
+    // Event emitted when a reservation is made
+    event ReservationMade(uint256 reservationId, address guest, uint256 roomId, uint256 startDate, uint256 endDate);
+
+    // Event emitted when a payment is made for a reservation
+    event PaymentMade(uint256 reservationId, address guest, uint256 amount);
+
+    // Event emitted when a reservation is cancelled
+    event ReservationCancelled(uint256 reservationId, address guest);
+
+    // Event emitted when funds are withdrawn from the contract
+    event FundsWithdrawn(address recipient, uint256 amount);
+
+    // Event emitted when a guest is refunded
+    event GuestRefunded(uint256 reservationId, address guest, uint256 refundAmount);
+
+    // Modifier to check if a room exists
+    modifier roomExists(uint256 roomId):
+        // Check if the room is available
+        // Throw an error if the room is already booked or does not exist
+        _;
+
+    // Modifier to check if a room is available for the specified dates
+    modifier roomAvailable(uint256 roomId, uint256 startDate, uint256 endDate):
+        // Check if the room is available for the specified dates
+        // Throw an error if the room is already booked for the selected dates
+        _;
+
+    // Contract constructor
+    constructor(uint256[] memory roomIds, uint256[] memory roomPrices):
+        // Check if the length of roomIds and roomPrices arrays is the same
+        // Set the contract owner as the message sender
+        // Initialize rooms with availability and price
+        // For each room ID and price in the input arrays:
+        //Set the room as available with the specified price per night
+
+    // Function to make a reservation
+    function makeReservation(uint256 roomId, uint256 startDate, uint256 endDate):
+        // Check if the end date is greater than the start date
+        // Create a new reservation object with the message sender, room ID, start date, end date, and unpaid status
+        // Add the reservation to the reservations array
+        // Update room availability for the specified dates
+        // Emit the ReservationMade event with the reservation ID, guest address, room ID, start date, and end date
+
+    // Function to make a payment for a reservation
+    function makePayment(uint256 reservationId, uint256 amount) public payable:
+        // Check if the reservation ID is valid
+        // Get the reservation object from the reservations array
+        // Check if the payment has not already been made
+        // Check if the message sender is the guest who made the reservation
+        // Check if the payment amount is sufficient
+        // Mark the reservation as paid
+        // Emit the PaymentMade event with the reservation ID, guest address, and payment amount
+
+    // Function to cancel a reservation
+    function cancelReservation(uint256 reservationId) public:
+        // Check if the reservation ID is valid
+        // Get the reservation object from the reservations array
+        // Check if the payment has not already been made
+        // Check if the message sender is the guest who made the reservation
+        // Update room availability for the specified dates
+        // Emit the ReservationCancelled event with the reservation ID and guest address
+
+    // Function to refund a guest for a paid reservation
+    function refundGuest(uint256 reservationId) public:
+        // Check if the reservation ID is valid
+        // Get the reservation object from the reservations array
+        // Check if the payment has been made for this reservation
+        // Check if the message sender is the contract owner
+        // Transfer the refund amount to the guest
+        // Mark the reservation as unpaid
+        // Emit the GuestRefunded event with the reservation ID, guest address, and refund amount
+
+    // Function to calculate the refund amount for a reservation
+    function calculateRefundAmount(uint256 startDate, uint256 endDate, uint256 pricePerNight) private pure returns (uint256):
+        // Calculate the total number of nights for the reservation
+        // Calculate and return the refund amount based on the total number of nights and the price per night
+
+    // Function to get the contract balance
+    function getBalance() public view returns (uint256):
+        // Return the current balance of the contract
+
+    // Function to withdraw funds from the contract
+    function withdrawFunds(uint256 amount) public:
+        // Check if the amount is available in the contract balance
+        // Check if the message sender is the contract owner
+        // Transfer the specified amount to the contract owner
+        // Emit the FundsWithdrawn event with the recipient address and amount
+
+    // Function to check if a room is available for the specified dates
+    function isRoomAvailable(uint256 roomId, uint256 startDate, uint256 endDate) private view returns (bool):
+        // Iterate over each date in the range from the start date to the end date
+        // Check if the room is available for each date
+        // If the room is not available for any date, return false
+        // If the room is available for all dates, return true
+
+    // Function to calculate the total price for a reservation
+    function calculateTotalPrice(uint256 startDate, uint256 endDate, uint256 pricePerNight) private pure returns (uint256):
+        // Calculate the total number of nights for the reservation
+        // Calculate and return the total price based on the total number of nights and the price per night
+
+    // Function to get the total number of reservations
+    function reservationCount() public view returns (uint256)
+        // Return the length of the reservations array
